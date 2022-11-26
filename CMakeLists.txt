@@ -64,6 +64,8 @@ set(PROJECT_SOURCES
         mainwindow.ui
         PlotCurvesWithAngle.cpp
         PlotCurvesWithAngle.h
+        TrigonometricUtils.cpp
+        TrigonometricUtils.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
