@@ -33,4 +33,5 @@ private:
     QwtPlotCurve *plotCurve1 = nullptr;
     QwtPlotCurve *plotCurve2 = nullptr;
     int angleBetweenLines = 0;
+    int rotateAngleLines = 0;
 };

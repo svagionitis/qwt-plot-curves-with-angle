@@ -46,7 +46,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::plotTwoLineCurvesWithAngleOnXAxis(int angle)
 {
-    PlotCurves::PlotCurvesWithAngle::plotTwoLineCurvesWithAngle(ui->qwtPlot, &plotCurve1, &plotCurve2, (float)angle);
+    PlotCurves::PlotCurvesWithAngle::plotTwoLineCurvesWithAngle(ui->qwtPlot, &plotCurve1, &plotCurve2,
+                                                                (float)angle, (float)rotateAngleLines);
     angleBetweenLines = angle;
 
     ui->qwtPlot->replot();
@@ -57,6 +58,7 @@ void MainWindow::plotTwoLineCurvesWithAngle(int xAxisAngle)
 {
     PlotCurves::PlotCurvesWithAngle::plotTwoLineCurvesWithAngle(ui->qwtPlot, &plotCurve1, &plotCurve2,
                                                                 (float)angleBetweenLines, (float)xAxisAngle);
+    rotateAngleLines = xAxisAngle;
 
     ui->qwtPlot->replot();
     ui->qwtPlot->repaint();
