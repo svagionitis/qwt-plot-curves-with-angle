@@ -3,6 +3,7 @@
 #include <QMainWindow>
 
 #include <QwtPlotCurve>
+#include <QwtPlotGraphicItem>
 #include <QwtPlotScaleItem>
 
 QT_BEGIN_NAMESPACE
@@ -32,6 +33,9 @@ private:
 
     QwtPlotCurve *plotCurve1 = nullptr;
     QwtPlotCurve *plotCurve2 = nullptr;
+
+    QwtPlotGraphicItem *svgGraphicItem = nullptr;
+
     int angleBetweenLines = 0;
     int rotateAngleLines = 0;
 };

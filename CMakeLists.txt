@@ -17,8 +17,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # See https://cmake.org/cmake/help/latest/variable/CMAKE_EXPORT_COMPILE_COMMANDS.html
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Gui Svg)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Gui Svg)
 
 if (ENABLE_QWT)
     # FIXME: If the Qt5 is used, then use the qwt-q5
@@ -91,7 +91,9 @@ else()
     endif()
 endif()
 
-set(TARGET_LINK_LIBRARIES_PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+set(TARGET_LINK_LIBRARIES_PRIVATE Qt${QT_VERSION_MAJOR}::Widgets
+                                  Qt${QT_VERSION_MAJOR}::Gui
+                                  Qt${QT_VERSION_MAJOR}::Svg)
 
 set(TARGET_INCLUDE_DIRECTORIES)
 

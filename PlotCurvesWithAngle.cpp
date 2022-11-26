@@ -1,9 +1,13 @@
 #include "PlotCurvesWithAngle.h"
 
 #include <QDebug>
+#include <QPainter>
+#include <QSvgRenderer>
 
+#include <QwtGraphic>
 #include <QwtPlot>
 #include <QwtPlotDirectPainter>
+#include <QwtPlotGraphicItem>
 #include <QwtScaleDiv>
 #include <QwtSymbol>
 
@@ -184,5 +188,39 @@ namespace PlotCurves
                                    new QwtSymbol(QwtSymbol::Cross, Qt::gray, QPen(Qt::black), QSize(5, 5)),
                                    Qt::darkMagenta,
                                    Qt::darkRed);
+    }
+
+    // See playground/svgmap/Plot.cpp for more info
+    void PlotCurvesWithAngle::loadSVG(QwtPlot *plot, QwtPlotGraphicItem **graphicItem,
+                                      const QString &fileName, bool doReplot)
+    {
+        QwtGraphic graphic;
+        QSvgRenderer renderer;
+
+        if (*graphicItem == nullptr)
+        {
+            *graphicItem = new QwtPlotGraphicItem();
+            (*graphicItem)->attach(plot);
+        }
+
+        if (renderer.load(fileName))
+        {
+            QPainter p(&graphic);
+            renderer.render(&p);
+        }
+
+        // Try to set the svg at the center of the plot
+        const QRectF svgRect(0 - ((float)renderer.defaultSize().width() / 2.0f),
+                             0 - ((float)renderer.defaultSize().height() / 2.0f),
+                             renderer.defaultSize().width(),
+                             renderer.defaultSize().height());
+
+        (*graphicItem)->setGraphic(svgRect, graphic);
+
+        if (doReplot)
+        {
+            plot->replot();
+            plot->repaint();
+        }
     }
 }
