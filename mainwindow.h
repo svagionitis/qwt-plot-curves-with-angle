@@ -2,6 +2,8 @@
 
 #include <QMainWindow>
 
+#include <QwtPlotCurve>
+
 QT_BEGIN_NAMESPACE
 namespace Ui
 {
@@ -19,4 +21,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+    QwtPlotCurve *plotCurve1 = nullptr;
+    QwtPlotCurve *plotCurve2 = nullptr;
 };
