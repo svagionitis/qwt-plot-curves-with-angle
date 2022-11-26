@@ -26,6 +26,11 @@
       <property name="title">
        <string>Plot</string>
       </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QwtPlot" name="qwtPlot"/>
+       </item>
+      </layout>
      </widget>
     </item>
    </layout>
@@ -42,6 +47,13 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QwtPlot</class>
+   <extends>QFrame</extends>
+   <header>qwt_plot.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
