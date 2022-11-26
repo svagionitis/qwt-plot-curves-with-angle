@@ -169,7 +169,7 @@ namespace PlotCurves
                                                          const float &angle, const float &xAxisAngle)
     {
         qDebug() << "angle: " << angle << " xAxisAngle: " << xAxisAngle;
-        float distance = plot->axisScaleDiv(QwtAxis::YLeft).range() / 2;
+        float distance = (float)plot->size().width() / 2.0f;
         qDebug() << "distance: " << distance;
         float halfAngle = angle / 2;
 
