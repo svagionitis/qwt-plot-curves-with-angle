@@ -49,6 +49,22 @@
       </layout>
      </widget>
     </item>
+    <item>
+     <widget class="QGroupBox" name="rotateLineCurvesGroupBox">
+      <property name="title">
+       <string>Rotate Line Curves</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QSlider" name="rotateLineCurvesHorizontalSlider">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">

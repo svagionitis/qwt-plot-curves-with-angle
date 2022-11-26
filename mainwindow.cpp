@@ -1,8 +1,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 
-#include <QwtPlotScaleItem>
-
 #include "PlotCurvesWithAngle.h"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -10,10 +8,15 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    // Init slider
+    // Init slider for angle between lines
     ui->angleBetweenCurvesHorizontalSlider->setRange((int)PlotCurves::PlotCurvesWithAngle::MinAngleBetweenCurves,
                                                      (int)PlotCurves::PlotCurvesWithAngle::MaxAngleBetweenCurves);
-    QObject::connect(ui->angleBetweenCurvesHorizontalSlider, &QSlider::valueChanged, this, &MainWindow::plotTwoLineCurvesWithAngle);
+    QObject::connect(ui->angleBetweenCurvesHorizontalSlider, &QSlider::valueChanged, this, &MainWindow::plotTwoLineCurvesWithAngleOnXAxis);
+
+    // Init slider for rotation angle of the lines
+    ui->rotateLineCurvesHorizontalSlider->setRange((int)PlotCurves::PlotCurvesWithAngle::MinAngleRotateCurves,
+                                                   (int)PlotCurves::PlotCurvesWithAngle::MaxAngleRotateCurves);
+    QObject::connect(ui->rotateLineCurvesHorizontalSlider, &QSlider::valueChanged, this, &MainWindow::plotTwoLineCurvesWithAngle);
 
     // Init plot
     // Remove the outer axis
@@ -38,9 +41,19 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::plotTwoLineCurvesWithAngle(int angle)
+void MainWindow::plotTwoLineCurvesWithAngleOnXAxis(int angle)
 {
     PlotCurves::PlotCurvesWithAngle::plotTwoLineCurvesWithAngle(ui->qwtPlot, &plotCurve1, &plotCurve2, (float)angle);
+    angleBetweenLines = angle;
+
+    ui->qwtPlot->replot();
+    ui->qwtPlot->repaint();
+}
+
+void MainWindow::plotTwoLineCurvesWithAngle(int xAxisAngle)
+{
+    PlotCurves::PlotCurvesWithAngle::plotTwoLineCurvesWithAngle(ui->qwtPlot, &plotCurve1, &plotCurve2,
+                                                                (float)angleBetweenLines, (float)xAxisAngle);
 
     ui->qwtPlot->replot();
     ui->qwtPlot->repaint();

@@ -9,6 +9,8 @@ namespace PlotCurves
     public:
         constexpr static const float MinAngleBetweenCurves = 0.0;
         constexpr static const float MaxAngleBetweenCurves = 360.0;
+        constexpr static const float MinAngleRotateCurves = 0.0;
+        constexpr static const float MaxAngleRotateCurves = 360.0;
 
         /**
          * @brief Plot a line curve from a single point (the other point is (0,0))

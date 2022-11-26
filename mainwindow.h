@@ -3,6 +3,7 @@
 #include <QMainWindow>
 
 #include <QwtPlotCurve>
+#include <QwtPlotScaleItem>
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -20,11 +21,13 @@ public:
     ~MainWindow();
 
 public slots:
-    void plotTwoLineCurvesWithAngle(int angle);
+    void plotTwoLineCurvesWithAngleOnXAxis(int angle);
+    void plotTwoLineCurvesWithAngle(int xAxisAngle);
 
 private:
     Ui::MainWindow *ui;
 
     QwtPlotCurve *plotCurve1 = nullptr;
     QwtPlotCurve *plotCurve2 = nullptr;
+    int angleBetweenLines = 0;
 };
