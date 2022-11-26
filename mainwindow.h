@@ -27,6 +27,9 @@ public slots:
 private:
     Ui::MainWindow *ui;
 
+    QwtPlotScaleItem *verticalAxisScale = nullptr;
+    QwtPlotScaleItem *horizontalAxisScale = nullptr;
+
     QwtPlotCurve *plotCurve1 = nullptr;
     QwtPlotCurve *plotCurve2 = nullptr;
     int angleBetweenLines = 0;

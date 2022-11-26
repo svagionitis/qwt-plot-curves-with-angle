@@ -27,9 +27,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->qwtPlot->setAxisScale(QwtAxis::XBottom, -90.0, 90.0);
 
     // Add inner axis
-    QwtPlotScaleItem *verticalAxisScale = new QwtPlotScaleItem(QwtScaleDraw::RightScale, 0.0);
+    verticalAxisScale = new QwtPlotScaleItem(QwtScaleDraw::RightScale, 0.0);
     verticalAxisScale->attach(ui->qwtPlot);
-    QwtPlotScaleItem *horizontalAxisScale = new QwtPlotScaleItem(QwtScaleDraw::BottomScale, 0.0);
+    horizontalAxisScale = new QwtPlotScaleItem(QwtScaleDraw::BottomScale, 0.0);
     horizontalAxisScale->attach(ui->qwtPlot);
 }
 
@@ -37,6 +37,9 @@ MainWindow::~MainWindow()
 {
     delete plotCurve1;
     delete plotCurve2;
+
+    delete verticalAxisScale;
+    delete horizontalAxisScale;
 
     delete ui;
 }
