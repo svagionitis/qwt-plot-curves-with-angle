@@ -1,0 +1,14 @@
+cmake_minimum_required(VERSION 3.10 FATAL_ERROR)
+project(qwt-download NONE)
+
+include(ExternalProject)
+ExternalProject_Add(qwt
+    GIT_REPOSITORY    https://git.code.sf.net/p/qwt/git
+    GIT_TAG           develop
+    SOURCE_DIR        ${CMAKE_BINARY_DIR}/qwt-src
+    BINARY_DIR        ${CMAKE_BINARY_DIR}/qwt-build
+    CONFIGURE_COMMAND ${QT_QMAKE_EXECUTABLE} ${CMAKE_BINARY_DIR}/qwt-src/qwt.pro
+    BUILD_COMMAND     make -j 8
+    INSTALL_COMMAND   ""
+    TEST_COMMAND      ""
+)
