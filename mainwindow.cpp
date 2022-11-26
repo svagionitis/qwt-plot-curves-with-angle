@@ -10,6 +10,12 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    // Init slider
+    ui->angleBetweenCurvesHorizontalSlider->setRange((int)PlotCurves::PlotCurvesWithAngle::MinAngleBetweenCurves,
+                                                     (int)PlotCurves::PlotCurvesWithAngle::MaxAngleBetweenCurves);
+    QObject::connect(ui->angleBetweenCurvesHorizontalSlider, &QSlider::valueChanged, this, &MainWindow::plotTwoLineCurvesWithAngle);
+
+    // Init plot
     // Remove the outer axis
     ui->qwtPlot->enableAxis(QwtAxis::YLeft, false);
     ui->qwtPlot->enableAxis(QwtAxis::XBottom, false);
@@ -22,11 +28,6 @@ MainWindow::MainWindow(QWidget *parent)
     verticalAxisScale->attach(ui->qwtPlot);
     QwtPlotScaleItem *horizontalAxisScale = new QwtPlotScaleItem(QwtScaleDraw::BottomScale, 0.0);
     horizontalAxisScale->attach(ui->qwtPlot);
-
-    PlotCurves::PlotCurvesWithAngle::plotTwoLineCurvesWithAngle(ui->qwtPlot, &plotCurve1, &plotCurve2, 60.0f);
-
-    ui->qwtPlot->replot();
-    ui->qwtPlot->repaint();
 }
 
 MainWindow::~MainWindow()
@@ -35,4 +36,12 @@ MainWindow::~MainWindow()
     delete plotCurve2;
 
     delete ui;
+}
+
+void MainWindow::plotTwoLineCurvesWithAngle(int angle)
+{
+    PlotCurves::PlotCurvesWithAngle::plotTwoLineCurvesWithAngle(ui->qwtPlot, &plotCurve1, &plotCurve2, (float)angle);
+
+    ui->qwtPlot->replot();
+    ui->qwtPlot->repaint();
 }

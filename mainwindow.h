@@ -19,6 +19,9 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+public slots:
+    void plotTwoLineCurvesWithAngle(int angle);
+
 private:
     Ui::MainWindow *ui;
 

@@ -33,6 +33,22 @@
       </layout>
      </widget>
     </item>
+    <item>
+     <widget class="QGroupBox" name="angleBetweenCurvesGroupBox">
+      <property name="title">
+       <string>Angle Between The Line Curves</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QSlider" name="angleBetweenCurvesHorizontalSlider">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
