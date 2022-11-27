@@ -6,7 +6,6 @@
 
 #include <QwtGraphic>
 #include <QwtPlot>
-#include <QwtPlotDirectPainter>
 #include <QwtPlotGraphicItem>
 #include <QwtScaleDiv>
 #include <QwtSymbol>
@@ -43,9 +42,6 @@ namespace PlotCurves
         (*plotCurve)->setSamples(positionPoints);
 
         (*plotCurve)->attach(plot);
-
-        auto positionDirectPainter = new QwtPlotDirectPainter(plot);
-        positionDirectPainter->drawSeries(*plotCurve, positionPoints.size() - 1, positionPoints.size() - 1);
 
         if (doReplot)
         {
@@ -95,8 +91,6 @@ namespace PlotCurves
         point1PositionPoints << zeroCoordinates << point1Coordinates;
         (*plotCurve1)->setSamples(point1PositionPoints);
         (*plotCurve1)->attach(plot);
-        auto point1DirectPainter = new QwtPlotDirectPainter(plot);
-        point1DirectPainter->drawSeries(*plotCurve1, point1PositionPoints.size() - 1, point1PositionPoints.size() - 1);
 
         (*plotCurve2)->setSymbol(symbol2);
         (*plotCurve2)->setPen(color2);
@@ -109,8 +103,6 @@ namespace PlotCurves
         point2PositionPoints << zeroCoordinates << point2Coordinates;
         (*plotCurve2)->setSamples(point2PositionPoints);
         (*plotCurve2)->attach(plot);
-        auto point2DirectPainter = new QwtPlotDirectPainter(plot);
-        point2DirectPainter->drawSeries(*plotCurve2, point2PositionPoints.size() - 1, point2PositionPoints.size() - 1);
 
         if (doReplot)
         {
@@ -158,9 +150,6 @@ namespace PlotCurves
         (*plotCurve)->setSamples(positionPoints);
 
         (*plotCurve)->attach(plot);
-
-        auto positionDirectPainter = new QwtPlotDirectPainter(plot);
-        positionDirectPainter->drawSeries(*plotCurve, positionPoints.size() - 1, positionPoints.size() - 1);
 
         if (doReplot)
         {
