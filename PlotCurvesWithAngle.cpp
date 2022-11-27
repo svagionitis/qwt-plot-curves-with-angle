@@ -33,7 +33,6 @@ namespace PlotCurves
         (*plotCurve)->setSymbol(symbol);
         (*plotCurve)->setPen(color);
         (*plotCurve)->setStyle(QwtPlotCurve::Lines);
-        (*plotCurve)->setCurveAttribute(QwtPlotCurve::Fitted);
         (*plotCurve)->setPaintAttribute(QwtPlotCurve::ClipPolygons);
         (*plotCurve)->setRenderHint(QwtPlotItem::RenderAntialiased);
 
@@ -83,7 +82,6 @@ namespace PlotCurves
         (*plotCurve1)->setSymbol(symbol1);
         (*plotCurve1)->setPen(color1);
         (*plotCurve1)->setStyle(QwtPlotCurve::Lines);
-        (*plotCurve1)->setCurveAttribute(QwtPlotCurve::Fitted);
         (*plotCurve1)->setPaintAttribute(QwtPlotCurve::ClipPolygons);
         (*plotCurve1)->setRenderHint(QwtPlotItem::RenderAntialiased);
 
@@ -95,7 +93,6 @@ namespace PlotCurves
         (*plotCurve2)->setSymbol(symbol2);
         (*plotCurve2)->setPen(color2);
         (*plotCurve2)->setStyle(QwtPlotCurve::Lines);
-        (*plotCurve2)->setCurveAttribute(QwtPlotCurve::Fitted);
         (*plotCurve2)->setPaintAttribute(QwtPlotCurve::ClipPolygons);
         (*plotCurve2)->setRenderHint(QwtPlotItem::RenderAntialiased);
 
