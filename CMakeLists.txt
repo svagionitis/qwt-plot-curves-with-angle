@@ -111,6 +111,12 @@ target_include_directories(${PROJECT_NAME}
                            PUBLIC
                             ${TARGET_INCLUDE_DIRECTORIES})
 
+# See https://stackoverflow.com/a/55208743
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E copy_directory
+                   ${CMAKE_SOURCE_DIR}/images
+                   $<TARGET_FILE_DIR:${PROJECT_NAME}>/images)
+
 set_target_properties(${PROJECT_NAME} PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}

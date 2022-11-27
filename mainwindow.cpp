@@ -33,7 +33,7 @@ MainWindow::MainWindow(QWidget *parent)
     horizontalAxisScale->attach(ui->qwtPlot);
 
     // Add image
-    PlotCurves::PlotCurvesWithAngle::loadSVG(ui->qwtPlot, &svgGraphicItem, "battleship-top-side.svg");
+    PlotCurves::PlotCurvesWithAngle::loadSVG(ui->qwtPlot, &svgGraphicItem, "images/battleship-top-side.svg");
     ui->qwtPlot->replot();
     ui->qwtPlot->repaint();
 }
