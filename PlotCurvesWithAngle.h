@@ -41,12 +41,14 @@ namespace PlotCurves
          * @param symbol2 A symbol at the end of the line 2
          * @param color1 A color for the line 1
          * @param color2 A color for the line 2
+         * @param doBrush A flag to use brush. FIXME: It's not working properly
          * @param doReplot A flag to do a replot and repaint. Default is false.
          */
         static void plotTwoLineCurvesTwoPoints(QwtPlot *plot, QwtPlotCurve **plotCurve1, QwtPlotCurve **plotCurve2,
                                                const QPointF &point1Coordinates, const QPointF &point2Coordinates,
                                                QwtSymbol *symbol1, QwtSymbol *symbol2,
-                                               Qt::GlobalColor color1, Qt::GlobalColor color2, bool doReplot = false);
+                                               Qt::GlobalColor color1, Qt::GlobalColor color2,
+                                               bool doBrush, bool doReplot = false);
 
         /**
          * @brief Plot a line curve given an angle from x axis and the distance of the line

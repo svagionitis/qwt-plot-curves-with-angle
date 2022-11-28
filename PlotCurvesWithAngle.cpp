@@ -53,6 +53,7 @@ namespace PlotCurves
                                                          const QPointF &point1Coordinates, const QPointF &point2Coordinates,
                                                          QwtSymbol *symbol1, QwtSymbol *symbol2,
                                                          Qt::GlobalColor color1, Qt::GlobalColor color2,
+                                                         bool doBrush,
                                                          bool doReplot)
     {
         qDebug() << "point1Coordinates: " << point1Coordinates << "point2Coordinates: " << point2Coordinates;
@@ -82,6 +83,21 @@ namespace PlotCurves
         (*plotCurve1)->setSymbol(symbol1);
         (*plotCurve1)->setPen(color1);
         (*plotCurve1)->setStyle(QwtPlotCurve::Lines);
+        if (doBrush)
+        {
+            (*plotCurve1)->setBrush(QBrush(Qt::green, Qt::SolidPattern));
+            if (point1Coordinates.x() < 0.0)
+            {
+                (*plotCurve1)->setOrientation(Qt::Horizontal);
+                (*plotCurve1)->setBaseline(plot->size().height());
+            }
+            else
+            {
+                (*plotCurve1)->setOrientation(Qt::Vertical);
+                (*plotCurve1)->setBaseline(0);
+            }
+        }
+
         (*plotCurve1)->setPaintAttribute(QwtPlotCurve::ClipPolygons);
         (*plotCurve1)->setRenderHint(QwtPlotItem::RenderAntialiased);
 
@@ -93,6 +109,22 @@ namespace PlotCurves
         (*plotCurve2)->setSymbol(symbol2);
         (*plotCurve2)->setPen(color2);
         (*plotCurve2)->setStyle(QwtPlotCurve::Lines);
+
+        if (doBrush)
+        {
+            (*plotCurve2)->setBrush(QBrush(Qt::green, Qt::SolidPattern));
+            if (point2Coordinates.x() < 0.0)
+            {
+                (*plotCurve2)->setOrientation(Qt::Horizontal);
+                (*plotCurve2)->setBaseline(plot->size().height());
+            }
+            else
+            {
+                (*plotCurve2)->setOrientation(Qt::Vertical);
+                (*plotCurve2)->setBaseline(0);
+            }
+        }
+
         (*plotCurve2)->setPaintAttribute(QwtPlotCurve::ClipPolygons);
         (*plotCurve2)->setRenderHint(QwtPlotItem::RenderAntialiased);
 
@@ -173,7 +205,7 @@ namespace PlotCurves
                                    new QwtSymbol(QwtSymbol::Cross, Qt::gray, QPen(Qt::black), QSize(5, 5)),
                                    new QwtSymbol(QwtSymbol::Cross, Qt::gray, QPen(Qt::black), QSize(5, 5)),
                                    Qt::darkMagenta,
-                                   Qt::darkRed);
+                                   Qt::darkRed, false);
     }
 
     // See playground/svgmap/Plot.cpp for more info
