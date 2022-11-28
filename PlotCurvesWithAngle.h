@@ -81,7 +81,7 @@ namespace PlotCurves
                                                const float &angle, const float &xAxisAngle = 0);
 
         /**
-         * @brief Load an SVG image as rendered (it is scaled)
+         * @brief Load an SVG image as rendered (it is scaled) at the center of the plot
          *
          * @param plot The Qwt plot
          * @param graphicItem The graphic item of the svg on the plot. Called by reference in order to modify it.
@@ -92,13 +92,13 @@ namespace PlotCurves
                                     const QString &fileName, bool doReplot = false);
 
         /**
-         * @brief Load an SVG image as pixmap (it is not scaled)
+         * @brief Load an image as pixmap (it is not scaled) at the center of the plot
          *
          * @param plot The Qwt plot
-         * @param fileName The filename to the svg image
+         * @param fileName The filename to the image
          * @param doReplot A flag to do a replot and repaint. Default is false.
          */
-        static void loadSVGPixmap(QwtPlot *plot, const QString &fileName, bool doReplot = false);
+        static void loadImagePixmap(QwtPlot *plot, const QString &fileName, bool doReplot = false);
 
     private:
         PlotCurvesWithAngle();

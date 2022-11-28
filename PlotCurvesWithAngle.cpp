@@ -244,7 +244,7 @@ namespace PlotCurves
     }
 
     // See https://www.qtcentre.org/threads/58305-How-to-attach-png-files-to-qwtplot
-    void PlotCurvesWithAngle::loadSVGPixmap(QwtPlot *plot, const QString &fileName, bool doReplot)
+    void PlotCurvesWithAngle::loadImagePixmap(QwtPlot *plot, const QString &fileName, bool doReplot)
     {
         QPixmap svgPixmap(fileName);
         QwtSymbol *svgSymbol = new QwtSymbol();
