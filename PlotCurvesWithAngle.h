@@ -111,6 +111,19 @@ namespace PlotCurves
          */
         static void plotCircle(QwtPlot *plot, QwtPlotShapeItem **circleItem, const float &radius, bool doReplot = false);
 
+        /**
+         * @brief Plot an arc with specific radius, start and span angles at the center of the graph
+         *
+         * @param plot The Qwt plot
+         * @param arcItem The shape item of the arc on the plot. Called by reference in order to modify it.
+         * @param radius The radius of the arc
+         * @param startAngle The start angle of the arc
+         * @param spanAngle The span angle of the arc
+         * @param doReplot A flag to do a replot and repaint. Default is false.
+         */
+        static void plotArc(QwtPlot *plot, QwtPlotShapeItem **arcItem, const float &radius,
+                            const int &startAngle, const int &spanAngle, bool doReplot = false);
+
     private:
         PlotCurvesWithAngle();
     };

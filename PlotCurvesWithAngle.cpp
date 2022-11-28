@@ -1,6 +1,7 @@
 #include "PlotCurvesWithAngle.h"
 
 #include <QDebug>
+#include <QGraphicsEllipseItem>
 #include <QPainter>
 #include <QPainterPath>
 #include <QSvgRenderer>
@@ -284,6 +285,43 @@ namespace PlotCurves
         (*circleItem)->setShape(circlePainterPath);
         (*circleItem)->setRenderHint(QwtPlotItem::RenderAntialiased);
         (*circleItem)->attach(plot);
+
+        if (doReplot)
+        {
+            plot->replot();
+            plot->repaint();
+        }
+    }
+
+    void PlotCurvesWithAngle::plotArc(QwtPlot *plot, QwtPlotShapeItem **arcItem, const float &radius,
+                                      const int &startAngle, const int &spanAngle, bool doReplot)
+    {
+        qDebug() << "radius: " << radius;
+
+        if (*arcItem == nullptr)
+        {
+            *arcItem = new QwtPlotShapeItem();
+        }
+
+        QPainterPath arcPainterPath;
+        const QRectF arcRect(-radius,
+                             -radius,
+                             2 * radius,
+                             2 * radius);
+
+        // FIXME: https://bugreports.qt.io/browse/QTBUG-80937
+        QGraphicsEllipseItem ellipseItem(arcRect.normalized());
+        ellipseItem.setStartAngle(startAngle * 16);
+        ellipseItem.setSpanAngle(spanAngle * 16);
+
+        arcPainterPath.addPath(ellipseItem.shape().simplified());
+        (*arcItem)->setShape(arcPainterPath);
+        // No black lines
+        (*arcItem)->setPen(Qt::black, 0, Qt::PenStyle::NoPen);
+        // Let's fill it with green
+        (*arcItem)->setBrush(QBrush(Qt::green));
+        (*arcItem)->setRenderHint(QwtPlotItem::RenderAntialiased);
+        (*arcItem)->attach(plot);
 
         if (doReplot)
         {

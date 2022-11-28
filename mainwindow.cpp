@@ -64,13 +64,22 @@ MainWindow::~MainWindow()
     delete circleItem;
     delete circleItemInner;
 
+    delete arcItem;
+
     delete ui;
 }
 
 void MainWindow::plotTwoLineCurvesWithAngleOnXAxis(int angle)
 {
+#ifdef PLOT_TWO_LINES_WITH_ANGLE
     PlotCurves::PlotCurvesWithAngle::plotTwoLineCurvesWithAngle(ui->qwtPlot, &plotCurve1, &plotCurve2,
                                                                 (float)angle, (float)rotateAngleLines);
+#endif
+    // The replot here is to calculate the axis bounds.
+    // The negative values in the angles is for clockwise rotation
+    ui->qwtPlot->replot();
+    PlotCurves::PlotCurvesWithAngle::plotArc(ui->qwtPlot, &arcItem, (float)ui->qwtPlot->axisScaleDiv(QwtAxis::YLeft).upperBound(),
+                                             -rotateAngleLines, -angle);
     angleBetweenLines = angle;
 
     ui->qwtPlot->replot();
@@ -79,8 +88,15 @@ void MainWindow::plotTwoLineCurvesWithAngleOnXAxis(int angle)
 
 void MainWindow::plotTwoLineCurvesWithAngle(int xAxisAngle)
 {
+#ifdef PLOT_TWO_LINES_WITH_ANGLE
     PlotCurves::PlotCurvesWithAngle::plotTwoLineCurvesWithAngle(ui->qwtPlot, &plotCurve1, &plotCurve2,
                                                                 (float)angleBetweenLines, (float)xAxisAngle);
+#endif
+    // The replot here is to calculate the axis bounds.
+    // The negative values in the angles is for clockwise rotation
+    ui->qwtPlot->replot();
+    PlotCurves::PlotCurvesWithAngle::plotArc(ui->qwtPlot, &arcItem, (float)ui->qwtPlot->axisScaleDiv(QwtAxis::YLeft).upperBound(),
+                                             -xAxisAngle, -angleBetweenLines);
     rotateAngleLines = xAxisAngle;
 
     ui->qwtPlot->replot();

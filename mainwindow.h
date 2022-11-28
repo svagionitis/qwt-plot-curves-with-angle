@@ -39,6 +39,7 @@ private:
 
     QwtPlotShapeItem *circleItem = nullptr;
     QwtPlotShapeItem *circleItemInner = nullptr;
+    QwtPlotShapeItem *arcItem = nullptr;
 
     int angleBetweenLines = 0;
     int rotateAngleLines = 0;
