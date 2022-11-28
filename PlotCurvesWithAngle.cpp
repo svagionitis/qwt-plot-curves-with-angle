@@ -7,6 +7,7 @@
 #include <QwtGraphic>
 #include <QwtPlot>
 #include <QwtPlotGraphicItem>
+#include <QwtPlotMarker>
 #include <QwtScaleDiv>
 #include <QwtSymbol>
 
@@ -209,8 +210,8 @@ namespace PlotCurves
     }
 
     // See playground/svgmap/Plot.cpp for more info
-    void PlotCurvesWithAngle::loadSVG(QwtPlot *plot, QwtPlotGraphicItem **graphicItem,
-                                      const QString &fileName, bool doReplot)
+    void PlotCurvesWithAngle::loadSVGRendered(QwtPlot *plot, QwtPlotGraphicItem **graphicItem,
+                                              const QString &fileName, bool doReplot)
     {
         QwtGraphic graphic;
         QSvgRenderer renderer;
@@ -234,6 +235,26 @@ namespace PlotCurves
                              renderer.defaultSize().height());
 
         (*graphicItem)->setGraphic(svgRect, graphic);
+
+        if (doReplot)
+        {
+            plot->replot();
+            plot->repaint();
+        }
+    }
+
+    // See https://www.qtcentre.org/threads/58305-How-to-attach-png-files-to-qwtplot
+    void PlotCurvesWithAngle::loadSVGPixmap(QwtPlot *plot, const QString &fileName, bool doReplot)
+    {
+        QPixmap svgPixmap(fileName);
+        QwtSymbol *svgSymbol = new QwtSymbol();
+        svgSymbol->setPixmap(svgPixmap);
+        svgSymbol->setPinPoint(QPointF(svgPixmap.width() / 2,
+                                       svgPixmap.height() / 2));
+
+        QwtPlotMarker *marker = new QwtPlotMarker();
+        marker->setSymbol(svgSymbol);
+        marker->attach(plot);
 
         if (doReplot)
         {

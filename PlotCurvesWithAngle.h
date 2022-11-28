@@ -80,8 +80,25 @@ namespace PlotCurves
         static void plotTwoLineCurvesWithAngle(QwtPlot *plot, QwtPlotCurve **plotCurve1, QwtPlotCurve **plotCurve2,
                                                const float &angle, const float &xAxisAngle = 0);
 
-        static void loadSVG(QwtPlot *plot, QwtPlotGraphicItem **graphicItem, const QString &fileName,
-                            bool doReplot = false);
+        /**
+         * @brief Load an SVG image as rendered (it is scaled)
+         *
+         * @param plot The Qwt plot
+         * @param graphicItem The graphic item of the svg on the plot. Called by reference in order to modify it.
+         * @param fileName The filename to the svg image
+         * @param doReplot A flag to do a replot and repaint. Default is false.
+         */
+        static void loadSVGRendered(QwtPlot *plot, QwtPlotGraphicItem **graphicItem,
+                                    const QString &fileName, bool doReplot = false);
+
+        /**
+         * @brief Load an SVG image as pixmap (it is not scaled)
+         *
+         * @param plot The Qwt plot
+         * @param fileName The filename to the svg image
+         * @param doReplot A flag to do a replot and repaint. Default is false.
+         */
+        static void loadSVGPixmap(QwtPlot *plot, const QString &fileName, bool doReplot = false);
 
     private:
         PlotCurvesWithAngle();
