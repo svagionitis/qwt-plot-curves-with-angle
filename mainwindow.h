@@ -5,6 +5,7 @@
 #include <QwtPlotCurve>
 #include <QwtPlotGraphicItem>
 #include <QwtPlotScaleItem>
+#include <QwtPlotShapeItem>
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -35,6 +36,9 @@ private:
     QwtPlotCurve *plotCurve2 = nullptr;
 
     QwtPlotGraphicItem *svgGraphicItem = nullptr;
+
+    QwtPlotShapeItem *circleItem = nullptr;
+    QwtPlotShapeItem *circleItemInner = nullptr;
 
     int angleBetweenLines = 0;
     int rotateAngleLines = 0;

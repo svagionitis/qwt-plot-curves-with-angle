@@ -35,6 +35,16 @@ MainWindow::MainWindow(QWidget *parent)
     // Load an image, here an SVG, as pixmap
     PlotCurves::PlotCurvesWithAngle::loadImagePixmap(ui->qwtPlot, "images/battleship-top-side.svg");
 
+    // Plot circles
+    // Use replot to calculate the axis scale bounds
+    ui->qwtPlot->replot();
+    auto radius = (float)ui->qwtPlot->axisScaleDiv(QwtAxis::YLeft).upperBound();
+    PlotCurves::PlotCurvesWithAngle::plotCircle(ui->qwtPlot, &circleItem, radius);
+    PlotCurves::PlotCurvesWithAngle::plotCircle(ui->qwtPlot, &circleItemInner, radius / 2);
+
+    ui->qwtPlot->replot();
+    ui->qwtPlot->repaint();
+
 #ifdef SVG_RENDERED
     // Add image
     PlotCurves::PlotCurvesWithAngle::loadSVG(ui->qwtPlot, &svgGraphicItem, "images/battleship-top-side.svg");
@@ -50,6 +60,9 @@ MainWindow::~MainWindow()
 
     delete verticalAxisScale;
     delete horizontalAxisScale;
+
+    delete circleItem;
+    delete circleItemInner;
 
     delete ui;
 }

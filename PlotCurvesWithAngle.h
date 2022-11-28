@@ -2,6 +2,7 @@
 
 #include <QwtPlotCurve>
 #include <QwtPlotGraphicItem>
+#include <QwtPlotShapeItem>
 
 namespace PlotCurves
 {
@@ -99,6 +100,16 @@ namespace PlotCurves
          * @param doReplot A flag to do a replot and repaint. Default is false.
          */
         static void loadImagePixmap(QwtPlot *plot, const QString &fileName, bool doReplot = false);
+
+        /**
+         * @brief Plot a circle with specific radius at the center of the graph
+         *
+         * @param plot The Qwt plot
+         * @param circleItem The shape item of the circle on the plot. Called by reference in order to modify it.
+         * @param radius The radius of the circle
+         * @param doReplot A flag to do a replot and repaint. Default is false.
+         */
+        static void plotCircle(QwtPlot *plot, QwtPlotShapeItem **circleItem, const float &radius, bool doReplot = false);
 
     private:
         PlotCurvesWithAngle();

@@ -2,12 +2,14 @@
 
 #include <QDebug>
 #include <QPainter>
+#include <QPainterPath>
 #include <QSvgRenderer>
 
 #include <QwtGraphic>
 #include <QwtPlot>
 #include <QwtPlotGraphicItem>
 #include <QwtPlotMarker>
+#include <QwtPlotShapeItem>
 #include <QwtScaleDiv>
 #include <QwtSymbol>
 
@@ -255,6 +257,33 @@ namespace PlotCurves
         QwtPlotMarker *marker = new QwtPlotMarker();
         marker->setSymbol(svgSymbol);
         marker->attach(plot);
+
+        if (doReplot)
+        {
+            plot->replot();
+            plot->repaint();
+        }
+    }
+
+    void PlotCurvesWithAngle::plotCircle(QwtPlot *plot, QwtPlotShapeItem **circleItem, const float &radius, bool doReplot)
+    {
+        qDebug() << "radius: " << radius;
+
+        if (*circleItem == nullptr)
+        {
+            *circleItem = new QwtPlotShapeItem();
+        }
+
+        QPainterPath circlePainterPath;
+        const QRectF circleRect(-radius,
+                                -radius,
+                                2 * radius,
+                                2 * radius);
+
+        circlePainterPath.addEllipse(circleRect);
+        (*circleItem)->setShape(circlePainterPath);
+        (*circleItem)->setRenderHint(QwtPlotItem::RenderAntialiased);
+        (*circleItem)->attach(plot);
 
         if (doReplot)
         {
