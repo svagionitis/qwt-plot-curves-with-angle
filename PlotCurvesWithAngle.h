@@ -119,10 +119,11 @@ namespace PlotCurves
          * @param radius The radius of the arc
          * @param startAngle The start angle of the arc
          * @param spanAngle The span angle of the arc
+         * @param clockwiseRotation If true, the rotation will be clockwise.
          * @param doReplot A flag to do a replot and repaint. Default is false.
          */
         static void plotArc(QwtPlot *plot, QwtPlotShapeItem **arcItem, const float &radius,
-                            const int &startAngle, const int &spanAngle, bool doReplot = false);
+                            const int &startAngle, const int &spanAngle, bool clockwiseRotation, bool doReplot = false);
 
     private:
         PlotCurvesWithAngle();

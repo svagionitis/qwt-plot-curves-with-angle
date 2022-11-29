@@ -294,9 +294,17 @@ namespace PlotCurves
     }
 
     void PlotCurvesWithAngle::plotArc(QwtPlot *plot, QwtPlotShapeItem **arcItem, const float &radius,
-                                      const int &startAngle, const int &spanAngle, bool doReplot)
+                                      const int &startAngle, const int &spanAngle, bool clockwiseRotation, bool doReplot)
     {
         qDebug() << "radius: " << radius << "startAngle: " << startAngle << "spanAngle: " << spanAngle;
+        int startA = startAngle;
+        int spanA = spanAngle;
+
+        if (clockwiseRotation)
+        {
+            startA = -startAngle;
+            spanA = -spanAngle;
+        }
 
         if (*arcItem == nullptr)
         {
@@ -311,8 +319,8 @@ namespace PlotCurves
 
         // FIXME: https://bugreports.qt.io/browse/QTBUG-80937
         QGraphicsEllipseItem ellipseItem(arcRect.normalized());
-        ellipseItem.setStartAngle(startAngle * 16);
-        ellipseItem.setSpanAngle(spanAngle * 16);
+        ellipseItem.setStartAngle(startA * 16);
+        ellipseItem.setSpanAngle(spanA * 16);
 
         arcPainterPath.addPath(ellipseItem.shape().simplified());
         (*arcItem)->setShape(arcPainterPath);
