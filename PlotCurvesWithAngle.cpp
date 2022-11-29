@@ -296,7 +296,7 @@ namespace PlotCurves
     void PlotCurvesWithAngle::plotArc(QwtPlot *plot, QwtPlotShapeItem **arcItem, const float &radius,
                                       const int &startAngle, const int &spanAngle, bool doReplot)
     {
-        qDebug() << "radius: " << radius;
+        qDebug() << "radius: " << radius << "startAngle: " << startAngle << "spanAngle: " << spanAngle;
 
         if (*arcItem == nullptr)
         {
