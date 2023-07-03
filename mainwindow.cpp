@@ -1,12 +1,17 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 
+#include <QDebug>
+#include <QMouseEvent>
+
 #include "PlotCurvesWithAngle.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    setMouseTracking(true);
 
     // Init slider for angle between lines
     ui->angleBetweenCurvesHorizontalSlider->setRange((int)PlotCurves::PlotCurvesWithAngle::MinAngleBetweenCurves,
@@ -100,4 +105,16 @@ void MainWindow::plotTwoLineCurvesWithAngle(int xAxisAngle)
 
     ui->qwtPlot->replot();
     ui->qwtPlot->repaint();
+}
+
+void MainWindow::mousePressEvent(QMouseEvent *event)
+{
+    qDebug() << Q_FUNC_INFO << "Event Type: " << event->type() << "Mouse Position: " << event->pos();
+
+    ui->qwtPlot->replot();
+    // FIXME: The x and y below are not the correct x, y coordinates on the plot
+    auto x = ui->qwtPlot->invTransform(QwtAxis::XBottom, event->pos().x());
+    auto y = ui->qwtPlot->invTransform(QwtAxis::YLeft, event->pos().y());
+
+    qDebug() << Q_FUNC_INFO << "Plot X: " << x << "Plot Y: " << y;
 }

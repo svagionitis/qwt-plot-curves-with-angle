@@ -22,6 +22,8 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void mousePressEvent(QMouseEvent *event);
+
 public slots:
     void plotTwoLineCurvesWithAngleOnXAxis(int angle);
     void plotTwoLineCurvesWithAngle(int xAxisAngle);
