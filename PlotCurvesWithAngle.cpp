@@ -306,6 +306,8 @@ namespace PlotCurves
             spanA = -spanAngle;
         }
 
+        startA += spanAngle / 2;
+
         if (*arcItem == nullptr)
         {
             *arcItem = new QwtPlotShapeItem();
