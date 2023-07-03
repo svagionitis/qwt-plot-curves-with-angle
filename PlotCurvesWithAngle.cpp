@@ -20,7 +20,7 @@ namespace PlotCurves
                                                        const QPointF &positionCoordinates,
                                                        QwtSymbol *symbol, Qt::GlobalColor color, bool doReplot)
     {
-        qDebug() << "positionCoordinates: " << positionCoordinates;
+        qDebug() << Q_FUNC_INFO << "positionCoordinates: " << positionCoordinates;
 
         QPointF zeroCoordinates(0.0, 0.0);
 
@@ -60,7 +60,7 @@ namespace PlotCurves
                                                          bool doBrush,
                                                          bool doReplot)
     {
-        qDebug() << "point1Coordinates: " << point1Coordinates << "point2Coordinates: " << point2Coordinates;
+        qDebug() << Q_FUNC_INFO << "point1Coordinates: " << point1Coordinates << "point2Coordinates: " << point2Coordinates;
 
         QPointF zeroCoordinates(0.0, 0.0);
 
@@ -149,8 +149,8 @@ namespace PlotCurves
                                                             QwtSymbol *symbol, Qt::GlobalColor color, bool doReplot)
 
     {
-        qDebug() << "degreesFromXAxis: " << degreesFromXAxis;
-        qDebug() << "distance: " << distance;
+        qDebug() << Q_FUNC_INFO << "degreesFromXAxis: " << degreesFromXAxis;
+        qDebug() << Q_FUNC_INFO << "distance: " << distance;
 
         QPointF zeroCoordinates(0.0, 0.0);
         // The coordinates in a xy axis of a point, with given angle and distance is calculated
@@ -194,9 +194,9 @@ namespace PlotCurves
     void PlotCurvesWithAngle::plotTwoLineCurvesWithAngle(QwtPlot *plot, QwtPlotCurve **plotCurve1, QwtPlotCurve **plotCurve2,
                                                          const float &angle, const float &xAxisAngle)
     {
-        qDebug() << "angle: " << angle << " xAxisAngle: " << xAxisAngle;
+        qDebug() << Q_FUNC_INFO << "angle: " << angle << " xAxisAngle: " << xAxisAngle;
         float distance = (float)plot->size().width() / 2.0f;
-        qDebug() << "distance: " << distance;
+        qDebug() << Q_FUNC_INFO << "distance: " << distance;
         float halfAngle = angle / 2;
 
         QPointF positionNorthCoordinates(distance * cos((xAxisAngle + halfAngle) * (M_PI / 180)),
@@ -268,7 +268,7 @@ namespace PlotCurves
 
     void PlotCurvesWithAngle::plotCircle(QwtPlot *plot, QwtPlotShapeItem **circleItem, const float &radius, bool doReplot)
     {
-        qDebug() << "radius: " << radius;
+        qDebug() << Q_FUNC_INFO << "radius: " << radius;
 
         if (*circleItem == nullptr)
         {
@@ -296,7 +296,7 @@ namespace PlotCurves
     void PlotCurvesWithAngle::plotArc(QwtPlot *plot, QwtPlotShapeItem **arcItem, const float &radius,
                                       const int &startAngle, const int &spanAngle, bool clockwiseRotation, bool doReplot)
     {
-        qDebug() << "radius: " << radius << "startAngle: " << startAngle << "spanAngle: " << spanAngle;
+        qDebug() << Q_FUNC_INFO << "radius: " << radius << "startAngle: " << startAngle << "spanAngle: " << spanAngle;
         int startA = startAngle;
         int spanA = spanAngle;
 
