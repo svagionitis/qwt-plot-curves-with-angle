@@ -23,6 +23,10 @@ MainWindow::MainWindow(QWidget *parent)
                                                    (int)PlotCurves::PlotCurvesWithAngle::MaxAngleRotateCurves);
     QObject::connect(ui->rotateLineCurvesHorizontalSlider, &QSlider::valueChanged, this, &MainWindow::plotTwoLineCurvesWithAngle);
 
+#ifdef PLOT_ARC
+    plotArc = new Plot::PlotArc(this);
+    ui->verticalLayout_2->addWidget(plotArc);
+#else
     // Init plot
     // Remove the outer axis
     ui->qwtPlot->enableAxis(QwtAxis::YLeft, false);
@@ -49,6 +53,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->qwtPlot->replot();
     ui->qwtPlot->repaint();
+#endif
 
 #ifdef SVG_RENDERED
     // Add image

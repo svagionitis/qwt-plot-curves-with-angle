@@ -7,6 +7,10 @@
 #include <QwtPlotScaleItem>
 #include <QwtPlotShapeItem>
 
+#ifdef PLOT_ARC
+#include "PlotArc.h"
+#endif
+
 QT_BEGIN_NAMESPACE
 namespace Ui
 {
@@ -30,6 +34,10 @@ public slots:
 
 private:
     Ui::MainWindow *ui;
+
+#ifdef PLOT_ARC
+    Plot::PlotArc *plotArc = nullptr;
+#endif
 
     QwtPlotScaleItem *verticalAxisScale = nullptr;
     QwtPlotScaleItem *horizontalAxisScale = nullptr;

@@ -68,6 +68,8 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
+        PlotArc.cpp
+        PlotArc.h
         PlotCurvesWithAngle.cpp
         PlotCurvesWithAngle.h
         TrigonometricUtils.cpp
